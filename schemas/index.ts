@@ -1,22 +1,22 @@
 import * as z from "zod";
 export const LoginSchema = z.object({
     email:z.string().email({
-        message: "email is required",
+        message: "البريد الالكتروني مطلوب",
     }),
     password:z.string().min(1, {
-        message: "password is required",
+        message: "كلمة المرور مطلوبه",
     }),
 });
 
 
 export const RegisterSchema = z.object({
     name:z.string().min(1, {
-        message: "name is required",
+        message: "الاسم مطلوب",
     }),
     email:z.string().email({
-        message: "email is required",
+        message: "البريد الالكتروني مطلوب",
     }),
     password:z.string().min(6, {
-        message: "minimum password character is 6",
+        message: "اقل عدد حروف هو 6 حروف",
     }),
 });

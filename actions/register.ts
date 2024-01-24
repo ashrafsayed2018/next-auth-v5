@@ -9,33 +9,34 @@ export const Register =async (values:z.infer<typeof RegisterSchema>) => {
     const validatedFields = RegisterSchema.safeParse(values);
 
     if (validatedFields.success) {
+
         const {name,email,password} = validatedFields.data;
 
-       const hashedPassword = await bcrypt.hash(password,10);
+        const hashedPassword = await bcrypt.hash(password,10);
 
        
-    //    check if email already exists
+        // check if email already exists
 
-    const existingEmail = await findUserByEmail(email)
+        const existingEmail = await findUserByEmail(email)
 
-     if (existingEmail) {
-        return {error: "Email already exists"}
-     }
-
-     await db.user.create({
-        data: {
-            name,
-            email,
-            password:hashedPassword
+        if (existingEmail) {
+        return {error: "البريد الالكتروني موجود"}
         }
+
+        await db.user.create({
+            data: {
+                name,
+                email,
+                password:hashedPassword
+            }
         });
 
         // TODO: set verification token email
 
-        return {success: "email sent successfully"}
+        return {success: "تم التسجيل بنجاح"}
 
     } else {
 
-        return {error: "not valid email"}
+        return {error: "بريد غير صالح"}
     }
 }

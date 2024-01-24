@@ -46,8 +46,8 @@ export const LoginForm = () => {
   }
   return (
     <CardWrapper
-    headerLabel='welcome back'
-    backButtonLabel="Don't have an account"
+    headerLabel='مرحبا بعودتك'
+    backButtonLabel="لا تملك حساب انشاء حساب جديد"
     backButtonHref='/auth/register'
     showSocial
     >
@@ -64,7 +64,7 @@ export const LoginForm = () => {
              name="email"
              render={({field}) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>البريد الالكتروني</FormLabel>
               <FormControl>
                 <Input
                 {...field}
@@ -82,7 +82,7 @@ export const LoginForm = () => {
              name="password"
              render={({field}) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>كلمة المرور</FormLabel>
               <FormControl>
                 <Input
                 {...field}
@@ -102,7 +102,7 @@ export const LoginForm = () => {
         <Button 
         type="submit" 
         disabled={isPending}
-        className="w-full">Login</Button>
+        className="w-full">دخول</Button>
 
       </form>
 
