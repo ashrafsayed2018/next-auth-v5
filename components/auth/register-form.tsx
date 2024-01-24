@@ -53,7 +53,6 @@ export const RegisterForm = () => {
     showSocial
     >
     <Form {...form}>
-
       <form
       onSubmit={form.handleSubmit(submitRegister)}
       className="space-y-6"
