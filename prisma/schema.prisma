@@ -10,6 +10,13 @@ datasource db {
   url      = "file:./dev.db"
 }
 
+
+// stores allowed values for user roles
+model UserRole {
+  id   String   @id
+  role String
+  users User[]
+}
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -17,6 +24,8 @@ model User {
   password      String?
   emailVerified DateTime?
   image         String?
+  userRole      UserRole?   @relation(fields: [userRoleId], references: [id])
+  userRoleId    String? @default("1")
   accounts      Account[]
 }
 

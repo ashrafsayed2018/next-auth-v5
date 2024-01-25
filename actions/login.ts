@@ -26,10 +26,10 @@ export const Login =async (values:z.infer<typeof LoginSchema>) => {
                 switch (err.type) {
 
                     case "CredentialsSignin":
-                        return {error : "invalid credentials"}
+                        return {error : "بيانات الدخول غير صالحه"}
 
                     default:
-                        return {error : "something went wrong"}
+                        return {error : "حدث خطاء ما"}
                 }
             }
 
@@ -39,6 +39,6 @@ export const Login =async (values:z.infer<typeof LoginSchema>) => {
      
     } else {
 
-        return {error: "not valid email"}
+        return {error: "بريد الكتروني غير صحيح"}
     }
 }

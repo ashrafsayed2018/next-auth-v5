@@ -1,11 +1,19 @@
 -- CreateTable
+CREATE TABLE "UserRole" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "role" TEXT NOT NULL
+);
+
+-- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT,
     "email" TEXT,
     "password" TEXT,
     "emailVerified" DATETIME,
-    "image" TEXT
+    "image" TEXT,
+    "userRoleId" TEXT DEFAULT '1',
+    CONSTRAINT "User_userRoleId_fkey" FOREIGN KEY ("userRoleId") REFERENCES "UserRole" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable

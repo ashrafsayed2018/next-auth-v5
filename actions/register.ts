@@ -2,7 +2,7 @@
 import * as z from "zod"
 import bcrypt from "bcryptjs"
 import { RegisterSchema } from "@/schemas";
-import { db } from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 import { findUserByEmail } from "@/data/user";
 export const Register =async (values:z.infer<typeof RegisterSchema>) => {
  
@@ -23,7 +23,7 @@ export const Register =async (values:z.infer<typeof RegisterSchema>) => {
         return {error: "البريد الالكتروني موجود"}
         }
 
-        await db.user.create({
+        await prisma.user.create({
             data: {
                 name,
                 email,
