@@ -1,8 +1,12 @@
+"use client"
 import React from 'react'
 import { FcGoogle } from 'react-icons/fc'
 import { FaGithub } from 'react-icons/fa'
 import { Button } from '../ui/button'
+import { signIn } from 'next-auth/react'
+import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
 export const Social = () => {
+
   return (
     <div className='w-full flex item-center gap-x-2'>
         <Button 
