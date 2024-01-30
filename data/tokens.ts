@@ -11,7 +11,6 @@ export const generateVerificationToken = async (email: string) =>{
   const existingToken = await getVerificationTokenByEmail
 (email);
 
-   console.log(existingToken);
   if(existingToken) {
 
     await prisma.verificationToken.delete({

@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { Login } from "@/actions/login";
+import Link from "next/link";
 
 export const LoginForm = () => {
 
@@ -90,6 +91,7 @@ export const LoginForm = () => {
                 type="password"
                 />
               </FormControl>
+          
               <FormMessage/>
             </FormItem>
            ) }
