@@ -1,10 +1,9 @@
 "use client"
 import * as z from "zod";
-
 import { useState, useTransition } from "react";
 import {useForm} from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { LoginSchema } from "@/schemas";
+import { ResetPasswordSchema } from "@/schemas";
 import {
   Form,
   FormControl,
@@ -19,27 +18,26 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { Login } from "@/actions/login";
-import Link from "next/link";
+import { ResetPassword } from "@/actions/reset-password";
 
-export const LoginForm = () => {
+export const ResetForm = () => {
 
-  const [isPending,startTransiton] = useTransition();
+  const [isPending,startTransition] = useTransition();
 
   const [error,setError] = useState<string|undefined>();
   const [success,setSuccess] = useState<string|undefined>();
 
-  const form = useForm<z.infer<typeof LoginSchema>>({
-    resolver: zodResolver(LoginSchema),
+  const form = useForm<z.infer<typeof ResetPasswordSchema>>({
+    resolver: zodResolver(ResetPasswordSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: ''
     }
   })
-  const submitLogin = (values: z.infer<typeof LoginSchema>) =>{
+  const submitLogin = (values: z.infer<typeof ResetPasswordSchema>) =>{
       setError("");
       setSuccess("");
-       startTransiton(() => {
-        Login(values).then(data => {
+      startTransition(() => {
+        ResetPassword(values).then(data => {
           setError(data!.error)
           setSuccess(data!.success);
         });
@@ -47,10 +45,9 @@ export const LoginForm = () => {
   }
   return (
     <CardWrapper
-    headerLabel='مرحبا بعودتك'
-    backButtonLabel="لا تملك حساب انشاء حساب جديد"
-    backButtonHref='/auth/register'
-    showSocial
+    headerLabel='نسيت كلمة المرور'
+    backButtonLabel="العودة لصفحة الدخول"
+    backButtonHref='/auth/login'
     >
     <Form {...form}>
 
@@ -69,7 +66,7 @@ export const LoginForm = () => {
               <FormControl>
                 <Input
                 {...field}
-                placeholder="type your email address"
+                placeholder="اكتب بريدك الالكتروني"
                 type="email"
                 />
               </FormControl>
@@ -78,26 +75,7 @@ export const LoginForm = () => {
            ) }
            / >
 
-          <FormField 
-             control={form.control}
-             name="password"
-             render={({field}) => (
-            <FormItem>
-              <FormLabel>كلمة المرور</FormLabel>
-              <FormControl>
-                <Input
-                {...field}
-                placeholder="type your password"
-                type="password"
-                />
-              </FormControl>
-              <Button size="sm" variant="link" asChild className="font-normal px-0">
-                  <Link href="/auth/reset-password"  >نسيت كلمة المرور</Link>
-              </Button>
-              <FormMessage/>
-            </FormItem>
-           ) }
-           / >
+        
         </div>
 
         <FormError message={error} />
@@ -106,7 +84,7 @@ export const LoginForm = () => {
         <Button 
         type="submit" 
         disabled={isPending}
-        className="w-full">دخول</Button>
+        className="w-full">ارسل اعادة تعيين كلمة المرور للبريد الالكتروني</Button>
 
       </form>
 

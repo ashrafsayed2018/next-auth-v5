@@ -20,3 +20,10 @@ export const RegisterSchema = z.object({
         message: "اقل عدد حروف هو 6 حروف",
     }),
 });
+
+
+export const ResetPasswordSchema = z.object({
+    email:z.string().email({
+        message: "البريد الالكتروني مطلوب",
+    })
+});

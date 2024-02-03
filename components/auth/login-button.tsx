@@ -14,6 +14,7 @@ type LoginButtonProps = {
 export const  LoginButton =  ({ children,mode="redirect",asChild}:LoginButtonProps) => {
     const router = useRouter()
     const onClick = () => {
+      console.log("clicked login")
         router.push("/auth/login")
     }
     if(mode === "modal") {
